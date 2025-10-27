@@ -1,0 +1,5 @@
+{
+  "name": "Academic Mentor GPT",
+  "description": "A web application that acts as a specialized academic guide to help university students learn how to think, approach, and write answers like top-performing master's students, using Gemini API for mentorship.",
+  "requestFramePermissions": []
+}

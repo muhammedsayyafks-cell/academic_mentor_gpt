@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { UserInput } from '../types';
-import { Discipline } from '../types';
+import { Discipline, WordCount } from '../types';
 
 interface InputPanelProps {
   onGenerate: (userInput: UserInput) => void;
@@ -20,11 +20,12 @@ export const InputPanel: React.FC<InputPanelProps> = ({ onGenerate, isLoading })
   const [question, setQuestion] = useState('');
   const [discipline, setDiscipline] = useState<string>(Discipline.GENERAL);
   const [studentAnswer, setStudentAnswer] = useState('');
+  const [wordCount, setWordCount] = useState<string>(WordCount.STANDARD);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim()) return;
-    onGenerate({ question, discipline, studentAnswer });
+    onGenerate({ question, discipline, studentAnswer, wordCount });
   };
 
   return (
@@ -56,6 +57,19 @@ export const InputPanel: React.FC<InputPanelProps> = ({ onGenerate, isLoading })
           >
             {Object.values(Discipline).map((d) => (
               <option key={d} value={d}>{d}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="wordCount" className="block text-sm font-medium text-brand-text-secondary mb-1">Answer Length</label>
+          <select
+            id="wordCount"
+            value={wordCount}
+            onChange={(e) => setWordCount(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition duration-150 ease-in-out bg-white"
+          >
+            {Object.values(WordCount).map((wc) => (
+              <option key={wc} value={wc}>{wc}</option>
             ))}
           </select>
         </div>

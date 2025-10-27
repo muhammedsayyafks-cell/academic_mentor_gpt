@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import type { UserInput, MentorResponse } from "../types";
 import { SYSTEM_PROMPT } from '../constants';
@@ -54,7 +53,7 @@ const responseSchema = {
 
 
 export const getMentorship = async (userInput: UserInput): Promise<MentorResponse> => {
-  const { question, discipline, studentAnswer } = userInput;
+  const { question, discipline, studentAnswer, wordCount } = userInput;
 
   let userPrompt = `
     Here is my academic question:
@@ -76,6 +75,7 @@ export const getMentorship = async (userInput: UserInput): Promise<MentorRespons
   }
 
   userPrompt += `
+    When you generate the 'modelAnswer' part of the JSON response, please ensure it is approximately ${wordCount}.
     Please provide your mentorship based on your role as Academic Mentor GPT.
   `;
 

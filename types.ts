@@ -1,8 +1,8 @@
-
 export interface UserInput {
   question: string;
   discipline: string;
   studentAnswer: string;
+  wordCount: string;
 }
 
 export interface QuestionBreakdown {
@@ -31,4 +31,10 @@ export enum Discipline {
   STEM = "STEM",
   LAW = "Law",
   GENERAL = "General / Other"
+}
+
+export enum WordCount {
+  BRIEF = "Brief (~150 words)",
+  STANDARD = "Standard (~300 words)",
+  DETAILED = "Detailed (~500 words)",
 }
